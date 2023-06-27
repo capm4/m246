@@ -12,10 +12,10 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: Test
+    #environment: Test
     steps:
-      #- name: Checkout
-      #  uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Log in to Azure using OIDC
         uses: azure/login@v1
         with:
