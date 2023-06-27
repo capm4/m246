@@ -29,15 +29,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Log in to Azure using OIDC
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Print Secret Value
+        run: echo ${{ secrets.YOUR_SECRET_NAME }}  
+      #- name: Log in to Azure using OIDC
+      #  uses: azure/login@v1
+      #  with:
+      #    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+      #    tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+      #    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Show account info (for debugging)
-        run: | 
-          az account show
-          az group list
+#      - name: Show account info (for debugging)
+ #       run: | 
+  #        az account show
+   #       az group list
