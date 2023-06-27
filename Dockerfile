@@ -25,7 +25,7 @@ RUN sed -i -E 's/^#?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # Syslog
 RUN echo '@include "/etc/syslog-ng/conf.d/*.conf"' >> /opt/docker/etc/syslog-ng/syslog-ng.conf
-COPY etc/00-syslog.conf /etc/syslog-ng/conf.d/00-syslog.conf
+#COPY etc/00-syslog.conf /etc/syslog-ng/conf.d/00-syslog.conf
 
 # Ensure env vars show up in SSH session in Azure by adding:
 # eval $(printenv | grep -E "^[^.]+=.+$" | grep -vE "^(COMPUTERNAME|PWD|HOME|HOSTNAME)" | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /root/.profile)
