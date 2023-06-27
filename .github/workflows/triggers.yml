@@ -18,7 +18,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Print Secret Value
-        run: |
-          for secret in $(echo "${{ secrets | keys }}"); do
-            echo "$secret: ${{ secrets[secret] }}"
-          done
+        run:  env | grep SECRET_
