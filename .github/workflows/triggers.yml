@@ -24,6 +24,27 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Show account info (for debugging)
-        run: |
-          az account show
-          az group list
+        run: az account show
+
+      - name: ACR Login
+        run: az acr login -n magento246test
+        
+      - name: Build image
+        id: docker_build
+        uses: docker/build-push-action@v4
+        with:
+          build-args: |
+            ARG_ROOT_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
+            ARG_LOG_STDOUT=/dev/stdout
+            ARG_LOG_STDERR=/dev/stderr
+          context: .
+          file: Dockerfile
+          push: true
+          tags: "magento246test.azurecr.io/magento246-test:${{ github.sha }}"
+
+      - name: 'Deploy to Azure Web App for Container'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: app-magento246test
+          images: "magento246test.azurecr.io/magento246-test:${{ github.sha }}"
+          
