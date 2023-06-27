@@ -27,7 +27,7 @@ jobs:
         run: az account show
 
       - name: ACR Login
-        run: az acr login -n magento246test
+        run: az acr login -n magent0
         
       - name: Build image
         id: docker_build
@@ -40,11 +40,11 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: "magento246test.azurecr.io/magento246-test:${{ github.sha }}"
+          tags: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
 
       - name: 'Deploy to Azure Web App for Container'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: app-magento246test
-          images: "magento246test.azurecr.io/magento246-test:${{ github.sha }}"
+          app-name: app-magent0
+          images: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
           
