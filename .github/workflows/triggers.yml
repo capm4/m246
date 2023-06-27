@@ -19,9 +19,9 @@ jobs:
       - name: Log in to Azure using OIDC
         uses: azure/login@v1
         with:
-          client-id: 50dff3c5-4049-43ef-a2ca-898b69d6dbb5
-          tenant-id: c23dfd33-3b09-4165-8ce6-d7f78fe81511
-          subscription-id: 5d0550fd-2351-46e3-8aad-705e21e1673e
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Show account info (for debugging)
         run: |
