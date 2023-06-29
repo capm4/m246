@@ -29,22 +29,22 @@ jobs:
       - name: ACR Login
         run: az acr login -n magent0
         
-      - name: Build image
-        id: docker_build
-        uses: docker/build-push-action@v4
-        with:
-          build-args: |
-            ARG_ROOT_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
-            ARG_LOG_STDOUT=/dev/stdout
-            ARG_LOG_STDERR=/dev/stderr
-          context: .
-          file: Dockerfile
-          push: true
-          tags: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
+      #- name: Build image
+      #  id: docker_build
+      #  uses: docker/build-push-action@v4
+      #  with:
+      #    build-args: |
+      #      ARG_ROOT_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
+      #      ARG_LOG_STDOUT=/dev/stdout
+      #      ARG_LOG_STDERR=/dev/stderr
+      #    context: .
+      #    file: Dockerfile
+      #    push: true
+      #    tags: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
 
       - name: 'Deploy to Azure Web App for Container'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: app-testmagenro
+          app-name: testmagenro
           images: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
           
