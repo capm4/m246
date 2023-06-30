@@ -46,5 +46,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: testmagenro
-          images: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
+          #images: "magent0.azurecr.io/magento246-test:${{ github.sha }}"
+          images: magent0.azurecr.io/magento246-test:81abcc5f795a59877c43439a51a9342947bc33c5
           
